@@ -3,6 +3,17 @@ export class ContaCorrente{
     #agencia;
     #saldo = 0;
     #cliente;
+    static #qtdContas = 0;
+
+    constructor(agencia, cliente){
+        this.#agencia = agencia;
+        this.#cliente = cliente;
+        ContaCorrente.#qtdContas += 1
+    }
+
+    static get qtdContas(){
+        return ContaCorrente.#qtdContas;
+    }
 
     get saldo(){
         return this.#saldo
