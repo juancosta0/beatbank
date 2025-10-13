@@ -1,9 +1,10 @@
+import { Cliente } from "./Cliente.js";
 export class ContaCorrente{
     #agencia;
     #saldo = 0;
     #cliente;
 
-    saldo(){
+    get saldo(){
         return this.#saldo
     }
 
@@ -33,10 +34,12 @@ export class ContaCorrente{
         return false
     }
 
-    setCliente(cliente){
-        this.#cliente = cliente;
+    set cliente(cliente){
+        if(cliente instanceof Cliente){
+            this.#cliente = cliente;
+        }
     }
-    setAgencia(agencia){
+    set agencia(agencia){
         this.#agencia = agencia
     }
 
