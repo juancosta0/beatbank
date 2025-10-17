@@ -1,16 +1,19 @@
-import { Cliente } from "./Cliente";
+export class Conta {
 
-export class ContaPoupanca {
     #saldo = 0;
     #cliente;
     #agencia;
     #saldoInicial;
 
     constructor(saldoInicial, cliente, agencia) {
-        this.#saldoInicial = saldoInicial
         this.#saldo = saldoInicial;
         this.#cliente = cliente;
         this.#agencia = agencia;
+        if(this.construtor == Conta){
+            throw new Error("Essa classe não deveria ser instanciada");
+            
+        }
+
     }
 
     get saldo() {
@@ -27,9 +30,17 @@ export class ContaPoupanca {
     }
 
     sacar(valor) {
+
+        throw new Error("Esse é um metodo abstrato");
+        
+
+    }
+
+    _sacar(valor, taxa) {
+        let valorSacado = taxa * valor
         if (valor > 0 && typeof valor === 'number') {
-            if (valor <= this.saldo) {
-                this.saldo -= valor
+            if (valorSacado <= this.saldo) {
+                this.#saldo -= valorSacado
                 return true
             }
         } else {
@@ -39,7 +50,7 @@ export class ContaPoupanca {
 
     depositar(valor) {
         if (valor > 0 && typeof valor === 'number') {
-            this.saldo += valor
+            this.#saldo += valor;
         }
     }
 
@@ -52,7 +63,7 @@ export class ContaPoupanca {
 
     }
     set cliente(cliente) {
-        if (typeof cliente == Cliente) {
+        if (cliente instanceof Cliente) {
             this.#cliente = cliente;
 
         }
